@@ -169,4 +169,3 @@ class master_stream:
                     fieldnames = ["user_name", "status", "datetime"]
                     writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
                     writer.writeheader()
-
