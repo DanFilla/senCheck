@@ -1,5 +1,6 @@
 keys/
 stream_data/
+logs/
 **.csv
 cron_scripts/**
 

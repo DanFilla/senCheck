@@ -27,8 +27,10 @@ class MyStreamListener(tweepy.StreamListener):
         if (from_creator(status)):
             #find what part the id is from and open that file.
             if status.user._json['id_str'] in self.dem_handles:
+                party = "Democrate"
                 opened_file = open("stream_data/dem_tweets.csv", "a")
             elif status.user._json['id_str'] in self.rep_handles:
+                party = "Republican"
                 opened_file = open("stream_data/rep_tweets.csv", "a")
 
             fieldnames = ["user_name", "status", "datetime"]
@@ -37,7 +39,7 @@ class MyStreamListener(tweepy.StreamListener):
             user_name = status._json['user']['name']
             date_time = datetime.datetime.now()
 
-            print(f"Senator {user_name} has tweeted from the Democrat party.")
+            print(f"Senator {user_name} has tweeted from the {party} party.")
 
             #Save tweet to csv file
             if hasattr(status, "retweeted_status"):

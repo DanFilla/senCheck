@@ -5,6 +5,7 @@ import logging
 import datetime
 import time
 import csv
+import logging
 
 class master_stream:
 
@@ -126,21 +127,23 @@ class master_stream:
     myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener)
 
     def __init__(self):
+        logging.basicConfig(filename="logs/logs.log")
+
         open("stream_data/rep_tweets.csv", "a").close()
         open("stream_data/dem_tweets.csv", "a").close()
 
-        check_headers()
+        self.check_headers()
 
         while(1):
-            # try:
-            print("connecting to stream...")
-            master_stream.myStream.filter(master_stream.dem_handles + master_stream.rep_handles)
-            # except:
-                # logging.error(f"Republican Stream Failed {datetime.datetime.now()}")
-                # time.sleep(10)
+            try:
+                print("connecting to stream...")
+                master_stream.myStream.filter(master_stream.dem_handles + master_stream.rep_handles)
+            except:
+                logging.error(f"Republican Stream Failed {datetime.datetime.now()}")
+                time.sleep(10)
 
 
-    def check_headers():
+    def check_headers(self):
         with open("stream_data/rep_tweets.csv", newline='') as csv_file:
             rea = csv.reader(csv_file)
             has_header = False
