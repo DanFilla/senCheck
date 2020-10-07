@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 import tweepy
 
 import matplotlib
@@ -22,6 +21,7 @@ import matplotlib.pyplot as plt
 import schedule
 import time
 from keys import secret_keys
+from trending_words import trending_words
 
 
 plt.close('all')
@@ -108,6 +108,6 @@ auth.set_access_token(key, secret)
 
 api = tweepy.API(auth)
 
-api.update_with_media(f"{today}_hourplt.png")
+api.update_with_media(f"{today}_hourplt.png", status=trending_words(rep_df, dem_df))
 
 os.remove(f"{today}_hourplt.png")
