@@ -1,7 +1,10 @@
 keys/*
 !keys/.gitkeep
+!keys/__init__.py
 stream_data/*
 !stream_data/.gitkeep
+!stream_data/__init__.py
 logs/*
 !logs/.gitkeep
+!logs/__init__.py
 
