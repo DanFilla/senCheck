@@ -1,4 +1,7 @@
 keys/*
+!keys/.gitkeep
 stream_data/*
+!stream_data/.gitkeep
 logs/*
+!logs/.gitkeep
 
