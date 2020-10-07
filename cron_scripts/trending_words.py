@@ -1,3 +1,4 @@
+import nltk;nltk.download('popular')
 
 def trending_words(rep, dem):
     status_list_rep = []

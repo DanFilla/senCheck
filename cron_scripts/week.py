@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import sys
 path_to_root = __file__[:27]
 sys.path.append(path_to_root)
@@ -19,6 +20,7 @@ import matplotlib.pyplot as plt
 import schedule
 import time
 from keys import secret_keys
+from trending_words import trending_words
 
 plt.close('all')
 matplotlib.use('Agg')
@@ -74,17 +76,25 @@ for i in range(len(dem_df['datetime'])-1, 0, -1):
         break
     dem_date_list[day] = dem_date_list.get(day) + [hour]
 
+print(rep_df)
+print(dem_df)
+
 rep_week_plot = []
 dem_week_plot = []
 for day_add in range(7):
     num = (week_start + datetime.timedelta(days=day_add)).day
     try:
         rep_week_plot.append(len(rep_date_list.get(num)))
-        dem_week_plot.append(len(dem_date_list.get(num)))
     except TypeError:
         rep_week_plot.append(0)
+
+    try:
+        dem_week_plot.append(len(dem_date_list.get(num)))
+    except TypeError:
         dem_week_plot.append(0)
 
+print(rep_week_plot)
+print(dem_week_plot)
 
 #save graph
 plt.plot(range(1, 8), rep_week_plot, label="Republicans", color="r")
@@ -100,9 +110,9 @@ auth.set_access_token(key, secret)
 
 api = tweepy.API(auth)
 
-api.update_with_media(f"./{today}_weekplt.png")
+api.update_with_media(f"{today}_weekplt.png", status=trending_words(rep_df, dem_df))
 
-os.remove(f"./{today}_weekplt.png")
-rep_df = pd.DataFrame(columns=rep_df.columns)
-dem_df = pd.DataFrame(columns=dem_df.columns)
+os.remove(f"{today}_weekplt.png")
+#rep_df = pd.DataFrame(columns=rep_df.columns)
+#dem_df = pd.DataFrame(columns=dem_df.columns)
 
