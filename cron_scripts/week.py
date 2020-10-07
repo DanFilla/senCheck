@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys
-sys.path.append("../")
+path_to_root = __file__[:27]
+sys.path.append(path_to_root)
 
 import tweepy
 
@@ -28,10 +29,8 @@ consumer_secret = os.environ["CONSUMER_SECRET"]
 key = os.environ["KEY"]
 secret = os.environ["SECRET"]
 
-logging.basicConfig(filename="../logs/logs.log")
-
-dem_df = pd.read_csv("../stream_data/dem_tweets.csv")
-rep_df = pd.read_csv("../stream_data/rep_tweets.csv")
+dem_df = pd.read_csv(path_to_root + "/stream_data/dem_tweets.csv")
+rep_df = pd.read_csv(path_to_root + "/stream_data/rep_tweets.csv")
 
 today = datetime.datetime.today()
 today = today.strftime(today.strftime("%b-%d-%Y"))
@@ -86,8 +85,6 @@ for day_add in range(7):
         rep_week_plot.append(0)
         dem_week_plot.append(0)
 
-print(rep_week_plot)
-print(dem_week_plot)
 
 #save graph
 plt.plot(range(1, 8), rep_week_plot, label="Republicans", color="r")
@@ -109,4 +106,3 @@ os.remove(f"./{today}_weekplt.png")
 rep_df = pd.DataFrame(columns=rep_df.columns)
 dem_df = pd.DataFrame(columns=dem_df.columns)
 
-logging.error("I have attempted to tweet!!")

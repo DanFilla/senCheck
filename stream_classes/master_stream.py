@@ -5,7 +5,6 @@ import logging
 import datetime
 import time
 import csv
-import logging
 
 class master_stream:
 
@@ -139,7 +138,7 @@ class master_stream:
                 print("connecting to stream...")
                 master_stream.myStream.filter(master_stream.dem_handles + master_stream.rep_handles)
             except:
-                logging.error(f"Republican Stream Failed {datetime.datetime.now()}")
+                logging.error(f"Stream Failed {datetime.datetime.now()}")
                 time.sleep(10)
 
 

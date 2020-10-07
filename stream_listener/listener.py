@@ -58,5 +58,4 @@ class MyStreamListener(tweepy.StreamListener):
                     user_status = status.text
                     tweet_data.writerow({"user_name": user_name, 'status': user_status, 'datetime': date_time})
         else:
-            print(f"ignored Democrate status {datetime.datetime.now()}")
-            print(f"{status.user._json['id']}")
+            print(f"Ignored status {datetime.datetime.now()}")
