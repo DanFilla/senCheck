@@ -76,9 +76,6 @@ for i in range(len(dem_df['datetime'])-1, 0, -1):
         break
     dem_date_list[day] = dem_date_list.get(day) + [hour]
 
-print(rep_df)
-print(dem_df)
-
 rep_week_plot = []
 dem_week_plot = []
 for day_add in range(7):
@@ -93,8 +90,6 @@ for day_add in range(7):
     except TypeError:
         dem_week_plot.append(0)
 
-print(rep_week_plot)
-print(dem_week_plot)
 
 #save graph
 plt.plot(range(1, 8), rep_week_plot, label="Republicans", color="r")
