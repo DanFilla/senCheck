@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 
-import sys
-sys.path.append("../")
 
 import tweepy
 
 import matplotlib
 
-import logging
 
 import os
+
+import sys
+path_to_root = __file__[:27]
+sys.path.append(path_to_root)
+
+
 import numpy as np
 import pandas as pd
 import datetime
@@ -30,10 +33,8 @@ consumer_secret = os.environ["CONSUMER_SECRET"]
 key = os.environ["KEY"]
 secret = os.environ["SECRET"]
 
-logging.basicConfig(filename="../logs/logs.log")
-
-dem_df = pd.read_csv("../stream_data/dem_tweets.csv")
-rep_df = pd.read_csv("../stream_data/rep_tweets.csv")
+dem_df = pd.read_csv(path_to_root + "/stream_data/dem_tweets.csv")
+rep_df = pd.read_csv(path_to_root + "/stream_data/rep_tweets.csv")
 
 current_day = datetime.datetime.today().day
 hour_range = range(0, 24)
